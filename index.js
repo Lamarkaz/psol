@@ -15,7 +15,7 @@ module.exports = function(sources, context, config) {
         var exists = false;
         for (var i = 0; i < this.imports.length; i++) {
             if(this.imports[i] === url) {
-                exists = true'
+                exists = true;
             }
         }
         if(!exists) {
