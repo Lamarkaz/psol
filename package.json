@@ -1,0 +1,23 @@
+{
+  "name": "psol",
+  "version": "1.0.1",
+  "description": "Solidity Preprocessor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lamarkaz/psol.git"
+  },
+  "author": "Lamarkaz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lamarkaz/psol/issues"
+  },
+  "homepage": "https://github.com/Lamarkaz/psol#readme",
+  "dependencies": {
+    "request": "^2.88.0",
+    "underscore.template": "^0.1.7"
+  }
+}
