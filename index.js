@@ -14,6 +14,10 @@ module.exports = function(sources, context, config) {
         if(source.endsWith('.psol')) {
             let template = underscoreTemplate(sources[source]);
             context.imports = [];
+            context.import = function (url) {
+                this.imports.push(url);
+                return 'import "' + url + ''";'
+            }
             sources[source] = template(context)
             for (var i = 0; i > context.imports.length; i++) {
                 request.get(context.imports[i], function (error, response, contract) {
