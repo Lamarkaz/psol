@@ -1,5 +1,5 @@
 var underscoreTemplate = require('underscore.template');
-var request = require('request');
+var request = require('sync-request');
 
 module.exports = function(sources, context, config) {
     if(typeof config === "object") {
@@ -11,7 +11,7 @@ module.exports = function(sources, context, config) {
         }
     }
     context.imports = [];
-    context.import = function (url) {
+    context.get = function (url) {
         var exists = false;
         for (var i = 0; i < this.imports.length; i++) {
             if(this.imports[i] === url) {
@@ -27,14 +27,15 @@ module.exports = function(sources, context, config) {
         if(source.endsWith('.psol')) {
             let template = underscoreTemplate(sources[source]);
             sources[source] = template(context)
-            for (var i = 0; i > context.imports.length; i++) {
-                request.get(context.imports[i], function (error, response, contract) {
-                    if (!error && response.statusCode == 200) {
-                        sources[context.imports[i]] = contract; // Does the newly added contract get preprocessed as well in this loop?
-                    } else {
-                        console.log("Error remote importing: " + context.imports[i])
+            for (var i = 0; i < context.imports.length; i++) {
+                if(typeof sources[context.imports[i]] != "string") {
+                    try {
+                        var contract = request('GET', context.imports[i]).getBody().toString();
+                        sources[context.imports[i]] = contract;
+                    } catch (e) {
+                        console.log(e)
                     }
-                });
+                }
             }
         }
     }
