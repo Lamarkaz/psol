@@ -16,7 +16,7 @@ module.exports = function(sources, context, config) {
             context.imports = [];
             context.import = function (url) {
                 this.imports.push(url);
-                return 'import "' + url + ''";'
+                return 'import "' + url + '";'
             }
             sources[source] = template(context)
             for (var i = 0; i > context.imports.length; i++) {
