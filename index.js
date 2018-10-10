@@ -26,6 +26,7 @@ module.exports = function(sources, context, config) {
     for (source in sources) {
         if(source.endsWith('.psol')) {
             let template = underscoreTemplate(sources[source]);
+            context.contractName = source;
             sources[source] = template(context)
             for (var i = 0; i < context.imports.length; i++) {
                 if(typeof sources[context.imports[i]] != "string") {

@@ -1,6 +1,6 @@
 {
   "name": "psol",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Solidity Preprocessor",
   "main": "index.js",
   "scripts": {
